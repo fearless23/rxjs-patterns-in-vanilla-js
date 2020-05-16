@@ -91,8 +91,9 @@ class VanillaTypeTwitterStream extends BasicTwitterStream {
     // }
     // ADD MORE TO OBSERVER LIKE ERROR, COMPLETE aND DATA METHOD
     return (observer) => {
+      console.log('data fn', observer.data);
       this.stream.on('tweet', (tweet) => {
-        console.log("TWEET")
+        console.log('TWEET', tweet.id);
         observer.data(extractTweetData(tweet));
         // if(err) observer.error("ERROR")
         // if(complete) observer
@@ -109,18 +110,22 @@ class VanillaSubjectTypeTwitterStream extends BasicTwitterStream {
   newTweet = new VanillaSubject();
   constructor(hashtag) {
     super(hashtag);
+    this.getData()
   }
 
   getData() {
     this.stream.on('tweet', (tweet) => {
       this.newTweet.next(extractTweetData(tweet));
-      // if(err) observer.error("ERROR")
-      // if(complete) observer
     });
+  }
+
+  getTweet() {
+    return this.newTweet;
   }
 
   die() {
     this.stop();
+    this.newTweet.complete()
   }
 }
 

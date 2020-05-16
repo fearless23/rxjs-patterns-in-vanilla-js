@@ -8,6 +8,7 @@ const observer = {
 
 class VanillaSubject {
   constructor(value = null) {
+    console.log("CONSTRUCTRED CALLED")
     this.value = value;
   }
 
@@ -18,6 +19,7 @@ class VanillaSubject {
   }
 
   next(value) {
+    console.log("NEXT CALLED")
     try {
       this.onData(value);
     } catch (err) {

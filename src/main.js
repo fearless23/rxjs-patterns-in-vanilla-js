@@ -9,7 +9,13 @@ stream.getTweet().subscribe((d) => {
 });
 */
 
+/*
 const stream = createStream('vanilla', 'corona');
-stream.getTweet(observer);
+stream.getTweet()(observer);
+*/
 
-// const stream = createStream("vanillaSub", 'corona')
+const stream = createStream('vanillaSub', 'corona');
+
+stream.getTweet().subscribe((d) => {
+  console.log(d.id);
+});
